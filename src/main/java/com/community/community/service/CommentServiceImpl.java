@@ -1,9 +1,12 @@
 package com.community.community.service;
 
 import com.community.community.dto.CommentDTO;
+import com.community.community.enums.NotificationStatusEnum;
+import com.community.community.enums.NotificationTypeEnum;
 import com.community.community.exception.CustomizeErrorCode;
 import com.community.community.exception.CustomizeException;
 import com.community.community.mapper.CommentMapper;
+import com.community.community.mapper.NotificationMapper;
 import com.community.community.mapper.QuestionMapper;
 import com.community.community.mapper.UserMapper;
 import com.community.community.model.*;
@@ -24,6 +27,8 @@ public class CommentServiceImpl implements CommentService {
 	private QuestionMapper questionMapper;
 	@Autowired
 	private UserMapper userMapper;
+	@Autowired
+	private NotificationMapper notificationMapper;
 
 	@Override
 	@Transactional
@@ -42,6 +47,9 @@ public class CommentServiceImpl implements CommentService {
 			commentMapper.insertSelective(comment);
 			dbComment.setCommentCount(1);
 			commentMapper.increaseCommentCount(dbComment);
+
+			// 创建通知
+			createNotify(comment,dbComment.getParentId(), dbComment.getCommentator(), NotificationTypeEnum.REPLY_COMMENT);
 		} else {
 			// 回复问题
 			Question question = questionMapper.selectByPrimaryKey(comment.getParentId());
@@ -49,7 +57,23 @@ public class CommentServiceImpl implements CommentService {
 			commentMapper.insertSelective(comment);
 			question.setCommentCount(1);
 			questionMapper.increaseCommentCount(question);
+
+			// 创建通知
+			createNotify(comment,question.getId(), question.getCreator(), NotificationTypeEnum.REPLY_QUESTION);
 		}
+	}
+
+
+	// 通知函数
+	private void createNotify(Comment comment, Integer questionId, Integer receiver,  NotificationTypeEnum notificationType) {
+		Notification notification = new Notification();
+		notification.setGmtCreate(System.currentTimeMillis());
+		notification.setNotifier(comment.getCommentator());
+		notification.setOuterId(questionId);
+		notification.setType(notificationType.getType());
+		notification.setStatus(NotificationStatusEnum.UNREAD.getStatus());
+		notification.setReceiver(receiver);
+		notificationMapper.insertSelective(notification);
 	}
 
 	@Override

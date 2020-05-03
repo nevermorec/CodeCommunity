@@ -32,6 +32,14 @@ mvn -Dmybatis.generator.overwrite=true mybatis-generator:generate
       COMMENT_COUNT = COMMENT_COUNT + #{commentCount,jdbcType=INTEGER}
       where ID=#{id}
     </update>
-    int increaseViewCount(Question record);
+    
+    
+int increaseLikeCount(Comment record);
 
-    int increaseCommentCount(Question record);
+int increaseCommentCount(Comment record);
+
+int increaseViewCount(Question record);
+
+int increaseCommentCount(Question record);
+
+List<Question> selectRelated(Question question);

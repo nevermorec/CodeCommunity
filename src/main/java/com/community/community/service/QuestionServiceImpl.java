@@ -31,12 +31,14 @@ public class QuestionServiceImpl implements QuestionService {
 	private QuestionMapper questionMapper;
 
 	@Override
-	public PaginationDTO list(Integer page, Integer size) {
-		PaginationDTO paginationDTO = new PaginationDTO();
+	public PaginationDTO<QuestionDTO> list(Integer page, Integer size) {
+		PaginationDTO<QuestionDTO> paginationDTO = new PaginationDTO();
 		Integer totalCount = (int)questionMapper.countByExample(new QuestionExample());
+		Integer totalPage = (int)Math.ceil(totalCount/(double)size);
 
 		if (page<1) page = 1;
-		if(page>getTotalPage(size)) page = getTotalPage(size);
+
+		if(page>totalPage) page = totalPage;
 
 		int offset = (page-1)*size;
 
@@ -54,20 +56,21 @@ public class QuestionServiceImpl implements QuestionService {
 			questionDTOlist.add(questionDTO);
 		}
 
-		paginationDTO.setQuestions(questionDTOlist);
+		paginationDTO.setData(questionDTOlist);
 		paginationDTO.setPagination(totalCount, page, size);
 		return paginationDTO;
 	}
 
 	@Override
-	public PaginationDTO listByUser(Integer userId, Integer page, Integer size) {
-		PaginationDTO paginationDTO = new PaginationDTO();
+	public PaginationDTO<QuestionDTO> listByUser(Integer userId, Integer page, Integer size) {
+		PaginationDTO<QuestionDTO> paginationDTO = new PaginationDTO();
 		QuestionExample example = new QuestionExample();
 		example.createCriteria().andCreatorEqualTo(userId);
 		Integer totalCount = (int)questionMapper.countByExample(example);
+		Integer totalPage = (int)Math.ceil(totalCount/(double)size);
 
 		if (page<1) page = 1;
-		if (page>getTotalPage(size)) page = getTotalPage(size);
+		if (page>totalPage) page = totalPage;
 
 		int offset = (page-1)*size;
 
@@ -82,7 +85,7 @@ public class QuestionServiceImpl implements QuestionService {
 			questionDTOlist.add(questionDTO);
 		}
 
-		paginationDTO.setQuestions(questionDTOlist);
+		paginationDTO.setData(questionDTOlist);
 		paginationDTO.setPagination(totalCount, page, size);
 		return paginationDTO;
 	}
@@ -113,10 +116,7 @@ public class QuestionServiceImpl implements QuestionService {
 		}
 	}
 
-	@Override
-	public Integer getTotalPage(Integer size) {
-		return (int)Math.ceil(questionMapper.countByExample(new QuestionExample())/(double)size);
-	}
+
 
 	@Override
 	public void increaseViewCount(Integer id) {

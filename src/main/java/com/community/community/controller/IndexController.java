@@ -1,9 +1,8 @@
 package com.community.community.controller;
 
 import com.community.community.dto.PaginationDTO;
-import com.community.community.dto.QuestionDTO;
 import com.community.community.mapper.UserMapper;
-import com.community.community.model.User;
+import com.community.community.service.NotificationService;
 import com.community.community.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,12 +23,16 @@ public class IndexController {
 	@Autowired
 	private QuestionService questionService;
 
+	@Autowired
+	private NotificationService notificationService;
+
 	@GetMapping("/")
 	public String greeting(Model model,
 						   @RequestParam(name = "page", defaultValue = "1")Integer page,
 						   @RequestParam(name = "size", defaultValue = "3")Integer size) {
 		PaginationDTO pagination = questionService.list(page, size);
 		model.addAttribute("pagination", pagination);
+
 		return "index";
 	}
 

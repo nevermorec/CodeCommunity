@@ -3,17 +3,15 @@ package com.community.community.controller;
 import com.community.community.dto.PaginationDTO;
 import com.community.community.mapper.UserMapper;
 import com.community.community.model.User;
+import com.community.community.service.NotificationService;
 import com.community.community.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 
 @Controller
@@ -23,9 +21,11 @@ public class ProfileController {
 	private UserMapper userMapper;
 	@Autowired
 	private QuestionService questionService;
+	@Autowired
+	private NotificationService notificationService;
 
 	@GetMapping("/questions")
-	public String profile(Model model, HttpServletRequest request,
+	public String profileQuestion(Model model, HttpServletRequest request,
 						  @RequestParam(name = "page", defaultValue = "1")Integer page,
 						  @RequestParam(name = "size", defaultValue = "3")Integer size) {
 		User user = (User) request.getSession().getAttribute("user");
@@ -34,6 +34,23 @@ public class ProfileController {
 		model.addAttribute("section", "questions");
 		PaginationDTO pagination = questionService.listByUser(user.getId(), page, size);
 		model.addAttribute("pagination", pagination);
+		long unreadCount = notificationService.unreadCount(user.getId());
+		model.addAttribute("unreadCount", unreadCount);
+		return "profile";
+	}
+
+	@GetMapping("/replies")
+	public String profileReplies(Model model, HttpServletRequest request,
+								 @RequestParam(name = "page", defaultValue = "1")Integer page,
+								 @RequestParam(name = "size", defaultValue = "3")Integer size) {
+		User user = (User) request.getSession().getAttribute("user");
+
+		model.addAttribute("sectionName", "最新回复");
+		model.addAttribute("section", "replies");
+		PaginationDTO pagination = notificationService.listByUserId(user.getId(), page, size);
+		model.addAttribute("pagination", pagination);
+		long unreadCount = notificationService.unreadCount(user.getId());
+		model.addAttribute("unreadCount", unreadCount);
 		return "profile";
 	}
 }
