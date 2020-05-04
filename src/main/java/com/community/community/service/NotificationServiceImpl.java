@@ -41,6 +41,7 @@ public class NotificationServiceImpl implements NotificationService {
         PaginationDTO<NotificationDTO> paginationDTO = new PaginationDTO();
         NotificationExample example = new NotificationExample();
         example.createCriteria().andReceiverEqualTo(userId);
+        example.setOrderByClause("gmt_create desc");
         Integer totalCount = (int)notificationMapper.countByExample(example);
         Integer totalPage = (int)Math.ceil(totalCount/(double)size);
 

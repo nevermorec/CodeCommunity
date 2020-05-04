@@ -7,7 +7,7 @@ import com.community.community.model.Question;
 import java.util.List;
 
 public interface QuestionService {
-	public PaginationDTO<QuestionDTO> list(Integer page, Integer size);
+	public PaginationDTO<QuestionDTO> list(String search, Integer page, Integer size);
 
 
 	public PaginationDTO<QuestionDTO> listByUser(Integer id, Integer page, Integer size);

@@ -6,9 +6,12 @@
     <link rel="stylesheet" href="/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="/css/bootstrap-theme.min.css"/>
     <link rel="stylesheet" href="/css/community.css"/>
+    <link rel="stylesheet" href="/css/editormd.css"/>
     <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
     <script src="/js/bootstrap.min.js" type="application/javascript"></script>
     <script src="/js/community.js" type="application/javascript"></script>
+    <script src="/js/editormd.min.js" type="application/javascript"></script>
 </head>
 <body>
 <div th:insert="~{navigation :: nav}"></div>
@@ -24,10 +27,31 @@
                     <label for="title">问题标题：</label>
                     <input type="text" th:value="${title}" class="form-control" id="title" name="title" placeholder="问题标题..." autocomplete="off">
                 </div>
-                <div class="form-group">
+
+
+                <div class="form-group" id="question-editor">
                     <label for="title">问题补充（参照右侧提示）：</label>
-                    <textarea class="form-control" th:text="${description}" name="description" id="description" cols="30" rows="10"></textarea>
+                    <textarea class="form-control" th:text="${description}" name="description"
+                              id="description" cols="30" rows="10"  style="display:none;"></textarea>
                 </div>
+
+                <script type="text/javascript">
+                    $(function() {
+                        var editor = editormd("question-editor", {
+                            width  : "100%",
+                            height : 350,
+                            path   : "/js/lib/",
+                            delay : 0,
+                            watch : false,
+                            placeholder : "请输入问题描述",
+                            imageUpload: true,
+                            imageFormats: ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
+                            imageUploadURL: "/file/upload"
+
+                        });
+                    });
+                </script>
+
                 <div class="form-group">
                     <label for="title">添加标签：</label>
                     <input type="text" class="form-control" th:value="${tag}" id="tag" name="tag" placeholder="输入标签（以逗号隔开）"
@@ -71,6 +95,8 @@
         </div>
     </div>
 </div>
+
+<div th:insert="~{footer :: foot}"></div>
 
 </body>
 </html>

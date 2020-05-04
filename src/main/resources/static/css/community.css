@@ -96,3 +96,23 @@ margin: 10px 0;
 .tag{
     font-size: 15px;
 }
+
+.description-view{
+    /**
+      思路：
+      1.设置inline-block属相
+      2.强制不换行
+      3.固定高度
+      4.隐藏超出部分
+      5.显示“……”
+    */
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    word-break: break-all;
+}
+
+.footer {
+    padding: 10px 25%;
+    color: #666;;
+}

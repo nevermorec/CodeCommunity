@@ -24,6 +24,7 @@ public class QuestionController {
 	@GetMapping("/question/{id}")
 	public String questionById(@PathVariable(name = "id") Integer id,
 							   Model model){
+
 		QuestionDTO questionDTO = questionService.getById(id);
 
 		// 显示相关问题

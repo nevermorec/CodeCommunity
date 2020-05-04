@@ -7,7 +7,6 @@ import com.community.community.dto.GithubUser;
 import okhttp3.*;
 import org.springframework.stereotype.Component;
 
-import java.sql.Time;
 import java.util.concurrent.TimeUnit;
 
 
@@ -15,7 +14,7 @@ import java.util.concurrent.TimeUnit;
 public class GithubProvider {
 
 	public String getAccessToken(AccessTokenDTO accessTokenDTO) {
-		System.setProperty("javax.net.ssl.trustStore", "D:\\Software\\jdk-11.0.6\\jre\\lib\\security\\jssecacerts");
+//		System.setProperty("javax.net.ssl.trustStore", "D:\\Software\\jdk-11.0.6\\jre\\lib\\security\\jssecacerts");
 
 		MediaType mediaType = MediaType.get("application/json; charset=utf-8");
 
@@ -40,7 +39,7 @@ public class GithubProvider {
 	}
 
 	public GithubUser getUser(String accessToken) {
-		System.setProperty("javax.net.ssl.trustStore", "D:\\Software\\jdk-11.0.6\\lib\\security\\jssecacertss");
+//		System.setProperty("javax.net.ssl.trustStore", "D:\\Software\\jdk-11.0.6\\lib\\security\\jssecacertss");
 		OkHttpClient client = new OkHttpClient();
 
 		OkHttpClient eagerclient = client.newBuilder()
@@ -48,9 +47,6 @@ public class GithubProvider {
 				.connectTimeout(15, TimeUnit.SECONDS)
 				.build();
 
-//		Request request = new Request.Builder()
-//				.url("https://api.github.com/user?access_token=" + accessToken)
-//				.build();
 		Request request = new Request.Builder()
 				.url("https://api.github.com/user")
 				.header("Authorization","token "+accessToken)

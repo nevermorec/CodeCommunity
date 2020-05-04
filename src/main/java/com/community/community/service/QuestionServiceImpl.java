@@ -2,11 +2,11 @@ package com.community.community.service;
 
 import com.community.community.dto.PaginationDTO;
 import com.community.community.dto.QuestionDTO;
+import com.community.community.dto.QuestionQueryDTO;
 import com.community.community.exception.CustomizeErrorCode;
 import com.community.community.exception.CustomizeException;
 import com.community.community.mapper.QuestionMapper;
 import com.community.community.mapper.UserMapper;
-
 import com.community.community.model.Question;
 import com.community.community.model.QuestionExample;
 import com.community.community.model.User;
@@ -31,9 +31,16 @@ public class QuestionServiceImpl implements QuestionService {
 	private QuestionMapper questionMapper;
 
 	@Override
-	public PaginationDTO<QuestionDTO> list(Integer page, Integer size) {
+	public PaginationDTO<QuestionDTO> list(String search, Integer page, Integer size) {
+		if (!StringUtils.isEmpty(search)) {
+			String[] tags = search.split(" ");
+			search = Arrays.stream(tags).collect(Collectors.joining("|"));
+		}
+
 		PaginationDTO<QuestionDTO> paginationDTO = new PaginationDTO();
-		Integer totalCount = (int)questionMapper.countByExample(new QuestionExample());
+		QuestionQueryDTO questionQueryDTO = new QuestionQueryDTO();
+		questionQueryDTO.setSearch(search);
+		Integer totalCount = questionMapper.countBySearch(questionQueryDTO);
 		Integer totalPage = (int)Math.ceil(totalCount/(double)size);
 
 		if (page<1) page = 1;
@@ -43,9 +50,12 @@ public class QuestionServiceImpl implements QuestionService {
 		int offset = (page-1)*size;
 
 		List<QuestionDTO> questionDTOlist = new ArrayList<>();
-		QuestionExample example = new QuestionExample();
-		example.setOrderByClause("gmt_create desc");
-		List<Question> questions = questionMapper.selectByExampleWithBLOBsWithRowbounds(example, new RowBounds(offset, size));
+//		QuestionExample example = new QuestionExample();
+//		example.setOrderByClause("gmt_create desc");
+//		List<Question> questions = questionMapper.selectByExampleWithBLOBsWithRowbounds(example, new RowBounds(offset, size));
+		questionQueryDTO.setSize(size);
+		questionQueryDTO.setPage(offset);
+		List<Question> questions = questionMapper.selectBySearch(questionQueryDTO);
 
 		for (Question question : questions) {
 			User user = userMapper.selectByPrimaryKey(question.getCreator());

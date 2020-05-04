@@ -6,10 +6,14 @@
     <link rel="stylesheet" href="/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="/css/bootstrap-theme.min.css"/>
     <link rel="stylesheet" href="/css/community.css"/>
+    <link rel="stylesheet" href="/css/editormd.preview.css" />
     <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
     <script src="https://cdn.bootcss.com/moment.js/2.20.1/moment.min.js"></script>
     <script src="/js/bootstrap.min.js" type="application/javascript"></script>
     <script src="/js/community.js" type="application/javascript"></script>
+    <script src="/js/editormd.js"></script>
+    <script src="/js/lib/marked.min.js"></script>
+    <script src="/js/lib/prettify.min.js"></script>
 </head>
 <body>
 <div th:insert="~{navigation :: nav}"></div>
@@ -32,7 +36,17 @@
                 <span th:text="${#dates.format(questionDTO.gmtCreate, 'yyyy-MM-dd HH:mm')}"></span>
             </span>
             <hr>
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" th:text="${questionDTO.description}"></div>
+
+                <!-- 内容 -->
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="question-view">
+                <textarea style="display:none;" th:text="${questionDTO.description}"></textarea>
+            </div>
+            <script type="text/javascript">
+                $(function () {
+                    var testView = editormd.markdownToHTML("question-view", {
+                    });
+                });
+            </script>
 
                 <!--标签-->
             <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -67,8 +81,11 @@
                         </a>
                     </div>
                     <div class="media-body">
-                        <h5 class="media-heading">
+                        <h5 class="media-heading" th:if="${commentDTO.user.name!=null}" style="color: #2965b1">
                             <span th:text="${commentDTO.user.name}"></span>
+                        </h5>
+                        <h5 class="media-heading" th:if="${commentDTO.user.name==null}" style="color: #2965b1">
+                            <span th:text="匿名用户"></span>
                         </h5>
                         <div th:text="${commentDTO.content}"></div>
                         <div class="menu">
@@ -106,12 +123,15 @@
                     <div class="media-left">
                         <a href="#">
                             <img class="media-object img-rounded"
-                                 th:src="${questionDTO.user.avatarUrl}">
+                                 th:src="${session.user.getAvatarUrl()}">
                         </a>
                     </div>
                     <div class="media-body" >
-                        <h5 class="media-heading">
-                            <span th:text="${questionDTO.user.name}"></span>
+                        <h5 class="media-heading" th:if="${session.user.getName()!=null}">
+                            <span th:text="${session.user.getName()}"></span>
+                        </h5>
+                        <h5 class="media-heading" th:if="${session.user.getName()==null}">
+                            <span th:text="匿名用户"></span>
                         </h5>
                     </div>
                 </div>
@@ -156,5 +176,7 @@
         </div>
     </div>
 </div>
+
+<div th:insert="~{footer :: foot}"></div>
 </body>
 </html>
