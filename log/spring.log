@@ -26,3 +26,59 @@
 2020-05-05 00:23:17.269  INFO 2740 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 8 ms
 2020-05-05 00:23:17.511  WARN 2740 --- [http-nio-8080-exec-1] o.a.c.util.SessionIdGeneratorBase        : Creation of SecureRandom instance for session ID generation using [SHA1PRNG] took [170] milliseconds.
 2020-05-05 00:34:18.019  WARN 2740 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=6m2s838ms658µs800ns).
+2020-05-05 04:06:45.135  WARN 2740 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=3h26s993ms588µs600ns).
+2020-05-05 09:35:22.354  WARN 2740 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=5h28m39s717ms937µs).
+2020-05-05 09:53:54.969  WARN 2740 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1m32s587ms756µs).
+2020-05-05 09:54:49.000  INFO 2372 --- [main] c.c.community.CommunityApplication       : Starting CommunityApplication on DESKTOP-1HS4F2D with PID 2372 (C:\Users\hyc\Desktop\community-master\target\classes started by hyc in C:\Users\hyc\Desktop\community-master)
+2020-05-05 09:54:49.002  INFO 2372 --- [main] c.c.community.CommunityApplication       : No active profile set, falling back to default profiles: default
+2020-05-05 09:54:49.040  WARN 2372 --- [background-preinit] o.s.h.c.j.Jackson2ObjectMapperBuilder    : For Jackson Kotlin classes support please add "com.fasterxml.jackson.module:jackson-module-kotlin" to the classpath
+2020-05-05 09:54:50.092  INFO 2372 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2020-05-05 09:54:50.132  INFO 2372 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 28ms. Found 0 JPA repository interfaces.
+2020-05-05 09:54:50.780  INFO 2372 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2020-05-05 09:54:50.793  INFO 2372 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-05-05 09:54:50.794  INFO 2372 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.33]
+2020-05-05 09:54:50.943  INFO 2372 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-05-05 09:54:50.943  INFO 2372 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1835 ms
+2020-05-05 09:54:51.093  INFO 2372 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2020-05-05 09:54:51.267  INFO 2372 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2020-05-05 09:54:51.335  INFO 2372 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2020-05-05 09:54:51.445  INFO 2372 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.12.Final
+2020-05-05 09:54:51.608  INFO 2372 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-05-05 09:54:51.762  INFO 2372 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2020-05-05 09:54:52.014  INFO 2372 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020-05-05 09:54:52.024  INFO 2372 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2020-05-05 09:54:52.510  WARN 2372 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2020-05-05 09:54:52.633  INFO 2372 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-05-05 09:54:52.713  INFO 2372 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2020-05-05 09:54:52.896  INFO 2372 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2020-05-05 09:54:52.901  INFO 2372 --- [main] c.c.community.CommunityApplication       : Started CommunityApplication in 4.78 seconds (JVM running for 6.281)
+2020-05-05 09:54:55.527  INFO 2372 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-05-05 09:54:55.527  INFO 2372 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-05-05 09:54:55.535  INFO 2372 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 8 ms
+2020-05-05 09:54:55.782  WARN 2372 --- [http-nio-8080-exec-1] o.a.c.util.SessionIdGeneratorBase        : Creation of SecureRandom instance for session ID generation using [SHA1PRNG] took [166] milliseconds.
+2020-05-05 10:09:34.398  INFO 9848 --- [main] c.c.community.CommunityApplication       : Starting CommunityApplication on DESKTOP-1HS4F2D with PID 9848 (C:\Users\hyc\Desktop\community-master\target\classes started by hyc in C:\Users\hyc\Desktop\community-master)
+2020-05-05 10:09:34.400  INFO 9848 --- [main] c.c.community.CommunityApplication       : No active profile set, falling back to default profiles: default
+2020-05-05 10:09:34.569  WARN 9848 --- [background-preinit] o.s.h.c.j.Jackson2ObjectMapperBuilder    : For Jackson Kotlin classes support please add "com.fasterxml.jackson.module:jackson-module-kotlin" to the classpath
+2020-05-05 10:09:35.355  INFO 9848 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2020-05-05 10:09:35.404  INFO 9848 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 35ms. Found 0 JPA repository interfaces.
+2020-05-05 10:09:36.035  INFO 9848 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2020-05-05 10:09:36.047  INFO 9848 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-05-05 10:09:36.048  INFO 9848 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.33]
+2020-05-05 10:09:36.201  INFO 9848 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-05-05 10:09:36.201  INFO 9848 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1734 ms
+2020-05-05 10:09:36.351  INFO 9848 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2020-05-05 10:09:36.528  INFO 9848 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2020-05-05 10:09:36.586  INFO 9848 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2020-05-05 10:09:36.672  INFO 9848 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.12.Final
+2020-05-05 10:09:36.792  INFO 9848 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-05-05 10:09:36.950  INFO 9848 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2020-05-05 10:09:37.177  INFO 9848 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020-05-05 10:09:37.186  INFO 9848 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2020-05-05 10:09:37.785  WARN 9848 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2020-05-05 10:09:37.920  INFO 9848 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-05-05 10:09:38.012  INFO 9848 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2020-05-05 10:09:38.225  INFO 9848 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2020-05-05 10:09:38.230  INFO 9848 --- [main] c.c.community.CommunityApplication       : Started CommunityApplication in 4.318 seconds (JVM running for 5.324)
+2020-05-05 10:09:46.436  INFO 9848 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-05-05 10:09:46.437  INFO 9848 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-05-05 10:09:46.445  INFO 9848 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 8 ms
