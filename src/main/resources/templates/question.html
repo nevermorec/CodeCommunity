@@ -121,7 +121,7 @@
             <div id="comment_section" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="media">
                     <div class="media-left">
-                        <a href="#">
+                        <a href="#" th:if=${session.user!=null}">
                             <img class="media-object img-rounded"
                                  th:src="${session.user.getAvatarUrl()}">
                         </a>
