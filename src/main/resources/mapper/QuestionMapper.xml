@@ -501,7 +501,7 @@
           resultType="java.lang.Integer">
     select count(*) from QUESTION
     <where>
-      <if test="search != null">
+      <if test="search != null and search != ''">
         and title regexp #{search}
       </if>
     </where>
@@ -511,7 +511,7 @@
           resultMap="BaseResultMap">
     select * from QUESTION
     <where>
-      <if test="search != null">
+      <if test="search != null and search != ''">
         and title regexp #{search}
       </if>
     </where>
