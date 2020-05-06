@@ -118,10 +118,13 @@
 
             <!-- 回复输入框 -->
             <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="border-bottom: 0">
-            <div id="comment_section" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div id="comment_section_1" class="col-lg-12 col-md-12 col-sm-12 col-xs-12" th:if="${session.user==null}">
+                <span style="color: red">登录后才能评论</span>
+            </div>
+            <div id="comment_section" class="col-lg-12 col-md-12 col-sm-12 col-xs-12" th:if="${session.user!=null}">
                 <div class="media">
                     <div class="media-left">
-                        <a href="#" th:if=${session.user!=null}">
+                        <a href="#">
                             <img class="media-object img-rounded"
                                  th:src="${session.user.getAvatarUrl()}">
                         </a>
