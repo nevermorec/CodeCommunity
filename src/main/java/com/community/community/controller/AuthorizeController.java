@@ -38,8 +38,9 @@ public class AuthorizeController  {
 	public String callback(@RequestParam(name="code") String code,
 						   @RequestParam(name="state") String state,
 						   HttpServletResponse httpServletResponse) {
-		System.out.println(code);
-		System.out.println(state);
+//		System.out.println(code);
+		log.info("githubCode:"+code);
+		log.info("githubState:"+state);
 		AccessTokenDTO accessTokenDTO = new AccessTokenDTO();
 		accessTokenDTO.setClient_id(client_id);
 		accessTokenDTO.setClient_secret(client_secret);

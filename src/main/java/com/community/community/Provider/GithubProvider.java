@@ -4,6 +4,7 @@ package com.community.community.Provider;
 import com.alibaba.fastjson.JSON;
 import com.community.community.dto.AccessTokenDTO;
 import com.community.community.dto.GithubUser;
+import lombok.extern.slf4j.Slf4j;
 import okhttp3.*;
 import org.springframework.stereotype.Component;
 
@@ -11,6 +12,7 @@ import java.util.concurrent.TimeUnit;
 
 
 @Component
+@Slf4j
 public class GithubProvider {
 
 	public String getAccessToken(AccessTokenDTO accessTokenDTO) {
@@ -27,10 +29,10 @@ public class GithubProvider {
 				.build();
 		try (Response response = client.newCall(request).execute()) {
 			String string = response.body().string();
-			System.out.println(string);
+			log.info("githubRespone:"+string);
 			String[] split = string.split("&");
 			String token = split[0].split("=")[1];
-			System.out.println(token);
+			log.info("githubToken:"+token);
 			return token;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -55,12 +57,12 @@ public class GithubProvider {
 		try {
 			Response response = client.newCall(request).execute();
 			String string = response.body().string();
-			System.out.println(string);
+			log.info("githubUser", string);
 			GithubUser githubUser = JSON.parseObject(string, GithubUser.class);
 			return githubUser;
 		} catch (Exception e) {
 			e.printStackTrace();
-			System.out.println("error1");
+			log.error("githubGetUserFail");
 		}
 		return null;
 	}

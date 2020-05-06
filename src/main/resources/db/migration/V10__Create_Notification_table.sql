@@ -5,8 +5,8 @@ create table notification
 	receiver int not null,
 	outer_id int,
 	type int,
-	gmt_create Bigint,
+	gmt_create bigint,
 	status int default 0,
-	constraint NOTIFICATION_PK
+	constraint notification_pk
 		primary key (id)
 );

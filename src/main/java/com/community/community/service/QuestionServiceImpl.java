@@ -47,7 +47,7 @@ public class QuestionServiceImpl implements QuestionService {
 
 		if(page>totalPage) page = totalPage;
 
-		int offset = (page-1)*size;
+		int offset = page<1?0:(page-1)*size;
 
 		List<QuestionDTO> questionDTOlist = new ArrayList<>();
 //		QuestionExample example = new QuestionExample();
